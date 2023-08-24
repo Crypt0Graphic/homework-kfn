@@ -12,9 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
 
-  public user = new BehaviorSubject<any>(null);
+  user = new BehaviorSubject<any>(null);
 
   login(data: Login) {
     return this.http.post<any>(`${environment.apiUrl}/auth/login`, data).pipe(
@@ -47,9 +46,7 @@ export class AuthService {
   checkUser(isLoginPage: boolean) {
     const token = localStorage.getItem('token');
     if (token) {
-      this.setUser(token);
-      console.log(this.route);
-      
+      this.setUser(token);      
       if (isLoginPage) {
         this.router.navigate(['/products']);
       }
