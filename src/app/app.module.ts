@@ -5,9 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
+import { PrivateComponent } from './core/layouts/private/private.component';
+import { PublicComponent } from './core/layouts/public/public.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,PrivateComponent, PublicComponent
   ],
   imports: [
     BrowserModule,
