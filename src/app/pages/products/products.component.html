@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-8">
   <mat-card *ngFor="let item of list">
     <!-- Header -->
-    <div class="h-16 p-4 font-bold">{{ item.title }}</div>
+    <div class="h-16 p-4 font-bold cursor-pointer" [routerLink]="['/product', item.id]">{{ item.title }}</div>
     <!-- Image -->
     <div class="w-full my-8 h-48">
       <img

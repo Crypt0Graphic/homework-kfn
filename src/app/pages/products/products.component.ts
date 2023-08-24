@@ -31,7 +31,7 @@ export class ProductsComponent {
       .subscribe({
         next: (res) => {
           this.list = res;
-          console.log('List:', this.list);
+          // console.log('List:', this.list);
         },
         error: (err) => {
           console.error(err);
