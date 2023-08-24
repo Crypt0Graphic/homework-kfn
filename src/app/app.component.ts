@@ -11,14 +11,7 @@ export class AppComponent {
   private authService = inject(AuthService);
 
   ngOnInit(){
-    this.checkUser();
-  }
-
-  checkUser(){
-    const token = localStorage.getItem("token");
-    if (token) {
-      this.authService.setUser(token);
-    }
+    this.authService.checkUser(false);
   }
 
 }

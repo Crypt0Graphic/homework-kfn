@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kfn-login',
@@ -31,12 +32,17 @@ export class LoginComponent {
   // Injects >= Angular 14
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   // Typed Forms >= Angular 14
   form = this.formBuilder.nonNullable.group({
     username: [environment.username, [Validators.required]],
     password: [environment.password, [Validators.required]],
   });
+
+  ngOnInit() {
+    this.authService.checkUser(true);
+  }
 
   login() {
     this.message = '';

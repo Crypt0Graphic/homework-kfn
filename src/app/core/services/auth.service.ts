@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Login } from '../models';
 import { BehaviorSubject, tap } from 'rxjs';
 import jwt_decode from 'jwt-decode';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   public user = new BehaviorSubject<any>(null);
 
@@ -40,6 +41,18 @@ export class AuthService {
       this.user.next(payload.user);
     } else {
       this.user.next(null);
+    }
+  }
+
+  checkUser(isLoginPage: boolean) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.setUser(token);
+      console.log(this.route);
+      
+      if (isLoginPage) {
+        this.router.navigate(['/products']);
+      }
     }
   }
 }
