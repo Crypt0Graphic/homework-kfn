@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from './core/services';
 
 @Component({
   selector: 'kfn-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'homework-kfn';
+
+  private authService = inject(AuthService);
+
+  ngOnInit(){
+    this.checkUser();
+  }
+
+  checkUser(){
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.authService.setUser(token);
+    }
+  }
+
 }

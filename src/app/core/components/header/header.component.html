@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <!-- Title -->
+  HW
+  <!-- Space -->
+  <span class="flex-auto"></span>
+  <span class="mr-8 text-sm font-light">Hoş Geldin <b>{{user}}</b>!</span>
+  <!-- Buttons -->
+  <button mat-button aria-label="SEpet" matTooltip="Tüm Ürünler" routerLink="products">
+    <mat-icon>list</mat-icon>
+  </button>
+  <button mat-button aria-label="SEpet" matTooltip="Sepet" routerLink="basket">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <button mat-button aria-label="Çıkış" matTooltip="Çıkış" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
