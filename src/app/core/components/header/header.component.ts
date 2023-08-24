@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AuthService } from '../../services';
+import { AuthService, BasketService } from '../../services';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -24,11 +24,14 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   private authService = inject(AuthService);
+  private basketService = inject(BasketService);
 
   user = '';
+  count = 0;
 
   ngOnInit() {
     this.user = this.authService.user.getValue();
+    this.basketService.basket.subscribe(res => this.count = res.length);
   }
 
   logout() {

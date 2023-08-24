@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/core/models';
-import { ProductService } from 'src/app/core/services';
+import { BasketService, ProductService } from 'src/app/core/services';
 
 @Component({
   selector: 'kfn-product',
@@ -18,6 +18,7 @@ export class ProductComponent {
   private route = inject(ActivatedRoute);
   private destroyRef = inject(DestroyRef);
   private productService = inject(ProductService);
+  private basketService = inject(BasketService);
 
   item!: Product;
 
@@ -34,10 +35,14 @@ export class ProductComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
           this.item = res;
         },
         error: (err) => console.error(err),
       });
+  }
+
+  addToTheBasket(item: Product){
+    this.basketService.add(item);
   }
 }

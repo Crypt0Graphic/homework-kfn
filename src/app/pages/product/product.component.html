@@ -20,7 +20,7 @@
     <!-- Actions -->
     <mat-card-actions class="w-full flex justify-between mt-auto">
       <span class="font-bold text-xl ml-2">{{ item.price }} ₺</span>
-      <button mat-raised-button color="accent">SEPETE EKLE</button>
+      <button mat-raised-button color="accent" (click)="addToTheBasket(item)">SEPETE EKLE</button>
     </mat-card-actions>
   </mat-card>
 </div>
