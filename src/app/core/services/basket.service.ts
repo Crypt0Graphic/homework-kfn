@@ -18,4 +18,11 @@ export class BasketService {
     // TODO: Sil
     console.log(this.basket.getValue());
   }
+
+  checkBasket(){
+    const lsBAsket = localStorage.getItem('basket');
+    if (lsBAsket) {
+      this.basket.next(JSON.parse(lsBAsket));      
+    }
+  }
 }
