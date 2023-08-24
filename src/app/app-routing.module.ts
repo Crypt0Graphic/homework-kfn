@@ -12,23 +12,23 @@ const routes: Routes = [
   {
     path: '',
     component: PublicComponent,
-    canActivate: [authGuard],
     children: [
-      { path: '', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent, title: 'Ürünler' },
-      { path: 'product/:id', component: ProductComponent, title: 'Ürün Detay' },
-      { path: 'basket', component: BasketComponent, title: 'Sepet' },
-    ],
-  },
-  {
-    path: '',
-    component: PrivateComponent,
-    children: [
+      { path: '', component: LoginComponent },
       {
         path: 'login',
         component: LoginComponent,
         title: 'Giriş',
       },
+    ],
+  },
+  {
+    path: '',
+    component: PrivateComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'products', component: ProductsComponent, title: 'Ürünler' },
+      { path: 'product/:id', component: ProductComponent, title: 'Ürün Detay' },
+      { path: 'basket', component: BasketComponent, title: 'Sepet' },
     ],
   },
 ];
