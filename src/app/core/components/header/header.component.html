@@ -3,15 +3,22 @@
   HW
   <!-- Space -->
   <span class="flex-auto"></span>
-  <span class="mr-8 text-sm font-light">Hoş Geldin <b>{{user}}</b>!</span>
+  <span class="mr-8 text-sm font-light"
+    >Hoş Geldin <b>{{ user }}</b
+    >!</span
+  >
   <!-- Buttons -->
-  <button mat-button aria-label="SEpet" matTooltip="Tüm Ürünler" routerLink="products">
+  <button
+    mat-button
+    aria-label="SEpet"
+    matTooltip="Tüm Ürünler"
+    routerLink="products"
+  >
     <mat-icon>list</mat-icon>
   </button>
-  <button mat-button aria-label="SEpet" matTooltip="Sepet" routerLink="basket">
-    <mat-icon>shopping_cart</mat-icon>
+  <button mat-button aria-label="Sepet" matTooltip="Sepet" routerLink="basket">
+    <mat-icon [matBadge]="count > 0 ? count : null" matBadgeSize="small" matBadgeColor="warn">shopping_cart</mat-icon>
   </button>
-  <span>{{count}}</span>
   <button mat-button aria-label="Çıkış" matTooltip="Çıkış" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
