@@ -23,12 +23,11 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  
   private authService = inject(AuthService);
 
   user = '';
 
-  ngOnInit(){
+  ngOnInit() {
     this.user = this.authService.user.getValue();
   }
 

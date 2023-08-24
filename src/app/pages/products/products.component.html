@@ -1,3 +1,24 @@
-<p>products works!</p>
-
-<p>Ürünler Buraya Gelecek</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-8">
+  <mat-card *ngFor="let item of list">
+    <!-- Header -->
+    <div class="h-16 p-4 font-bold">{{ item.title }}</div>
+    <!-- Image -->
+    <div class="w-full my-8 h-48">
+      <img
+        mat-card-image
+        [src]="item.image"
+        [alt]="item.title"
+        class="mx-auto"
+      />
+    </div>
+    <!-- Description    -->
+    <mat-card-content>
+      <span class="text-xs py-16 text-gray-400 mb-8">{{ item.description }}</span>
+    </mat-card-content>
+    <!-- Actions -->
+    <mat-card-actions class="w-full flex justify-between mt-auto">
+      <span class="font-bold text-xl ml-2">{{ item.price }} ₺</span>
+      <button mat-button color="accent" [routerLink]="['/product', item.id]">Detay</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
