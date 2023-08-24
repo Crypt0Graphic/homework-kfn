@@ -32,7 +32,14 @@
       </mat-form-field>
     </form>
     <div class="w-full text-center pb-4">
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()">GİRİŞ</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid || submitted"
+        (click)="login()"
+      >
+        GİRİŞ
+      </button>
     </div>
   </mat-card-content>
 </mat-card>
