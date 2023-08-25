@@ -1,28 +1,56 @@
 <div class="pt-4 flex">
-  <h3>Tüm Ürünler</h3> <span class="ml-2 text-gray-400">({{list.length}})</span>
+  <h3>Tüm Ürünler</h3>
+  <span class="ml-2 text-gray-400">({{ list.length }})</span>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-8">
-  <mat-card *ngFor="let item of list" class="card-hover">
-    <!-- Header -->
-    <div class="h-16 p-4 font-bold cursor-pointer" [routerLink]="['/product', item.id]">{{ item.title }}</div>
-    <!-- Image -->
-    <div class="w-full my-8 h-48">
-      <img
-        mat-card-image
-        [src]="item.image"
-        [alt]="item.title"
-        class="mx-auto"
-      />
-    </div>
-    <!-- Description    -->
-    <mat-card-content>
-      <span class="text-xs py-16 text-gray-400 mb-8">{{ item.description }}</span>
-    </mat-card-content>
-    <!-- Actions -->
-    <mat-card-actions class="w-full flex justify-between mt-auto">
-      <span class="font-bold text-xl ml-2">{{ item.price }} ₺</span>
-      <button mat-button color="accent" [routerLink]="['/product', item.id]">Detay</button>
-    </mat-card-actions>
-  </mat-card>
+<div *ngIf="list && !loading">
+  <div class="my-4">
+    <input matInput class="w-full" [(ngModel)]="searchText" placeholder="Ara" />
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-8"
+    *ngIf="(list | filter : searchText).length > 0; else noResults"
+  >
+    <mat-card
+      *ngFor="let item of list | filter : searchText"
+      class="card-hover"
+    >
+      <!-- Header -->
+      <div
+        class="h-16 p-4 font-bold cursor-pointer"
+        [routerLink]="['/product', item.id]"
+      >
+        {{ item.title }}
+      </div>
+      <!-- Image -->
+      <div class="w-full my-8 h-48">
+        <img
+          mat-card-image
+          [src]="item.image"
+          [alt]="item.title"
+          class="mx-auto"
+        />
+      </div>
+      <!-- Description    -->
+      <mat-card-content>
+        <span class="text-xs py-16 text-gray-400 mb-8">{{
+          item.description
+        }}</span>
+      </mat-card-content>
+      <!-- Actions -->
+      <mat-card-actions class="w-full flex justify-between mt-auto">
+        <span class="font-bold text-xl ml-2">{{ item.price }} ₺</span>
+        <button mat-button color="accent" [routerLink]="['/product', item.id]">
+          Detay
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <ng-template #noResults>
+    <p class="text-red-600">"{{ searchText }}"" için Sonuç Bulunamadı</p>
+  </ng-template>
 </div>
+
+<div *ngIf="loading">Yükleniyor...</div>

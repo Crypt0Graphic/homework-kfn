@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs';
 import { Product } from 'src/app/core/models';
 import { BasketService, ProductService } from 'src/app/core/services';
 
@@ -20,6 +21,7 @@ export class ProductComponent {
   private productService = inject(ProductService);
   private basketService = inject(BasketService);
 
+  loading = false;
   item!: Product;
 
   ngOnInit(): void {
@@ -27,12 +29,16 @@ export class ProductComponent {
   }
 
   get() {
+    this.loading = true;
     // Get Parameter
     const id: string = this.route.snapshot.paramMap.get('id') ?? '0';
     // Call Service
     this.productService
       .get(+id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        finalize(() => (this.loading = false))
+      )
       .subscribe({
         next: (res) => {
           // console.log(res);
@@ -42,7 +48,7 @@ export class ProductComponent {
       });
   }
 
-  addToTheBasket(item: Product){
+  addToTheBasket(item: Product) {
     this.basketService.add(item);
   }
 }

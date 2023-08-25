@@ -1,6 +1,6 @@
 <div class="pt-4 h-screen">
   <h3>Ürün Detay</h3>
-  <mat-card *ngIf="item">
+  <mat-card *ngIf="item && !loading">
     <!-- Header -->
     <div class="h-16 p-4 font-bold text-lg">{{ item.title }}<span class="text-gray-300"> / {{ item.category }}</span></div>
     <!-- Image -->
@@ -24,4 +24,7 @@
       <button mat-raised-button color="accent" (click)="addToTheBasket(item)">SEPETE EKLE</button>
     </mat-card-actions>
   </mat-card>
+  <div *ngIf="loading">Yükleniyor...</div>
 </div>
+
+
