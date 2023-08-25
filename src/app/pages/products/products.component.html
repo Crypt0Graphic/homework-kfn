@@ -4,8 +4,21 @@
 </div>
 
 <div *ngIf="list && !loading">
-  <div class="my-4">
-    <input matInput class="w-full" [(ngModel)]="searchText" placeholder="Ara" />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        class="w-full"
+        [(ngModel)]="searchText"
+        placeholder="Filtrele"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-select (selectionChange)="onSelectChange($event)" placeholder="Sırala">
+        <mat-option value="1">Fiyata Göre (Artan)</mat-option>
+        <mat-option value="2">Fiyata Göre (Azalan)</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div
@@ -49,8 +62,8 @@
   </div>
 
   <ng-template #noResults>
-    <p class="text-red-600">"{{ searchText }}"" için Sonuç Bulunamadı</p>
+    <p class="pb-96">"{{ searchText }}"" için Sonuç Bulunamadı</p>
   </ng-template>
 </div>
 
-<div *ngIf="loading">Yükleniyor...</div>
+<div class="h-screen" *ngIf="loading">Yükleniyor...</div>

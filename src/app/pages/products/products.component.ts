@@ -1,15 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
-import { ProductService } from 'src/app/core/services';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatCardModule } from '@angular/material/card';
-import { Product } from 'src/app/core/models';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectChange, MatSelectModule} from '@angular/material/select';
+import { RouterModule } from '@angular/router';
+import { orderBy } from 'lodash-es';
 import { finalize } from 'rxjs';
+import { Product } from 'src/app/core/models';
+import { ProductService } from 'src/app/core/services';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'kfn-products',
@@ -19,8 +21,10 @@ import { finalize } from 'rxjs';
     FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatInputModule,
     RouterModule,
+    MatSelectModule
   ],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
@@ -54,5 +58,14 @@ export class ProductsComponent {
           console.error(err);
         },
       });
+  }
+
+  onSelectChange(e: MatSelectChange){
+    if (e.value === "1") {
+      this.list = orderBy(this.list, item => item.price)
+    } else {
+      this.list = orderBy(this.list, item => item.price, 'desc')
+    }
+
   }
 }
