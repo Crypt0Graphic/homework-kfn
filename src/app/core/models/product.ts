@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   rating: Rating;
   title: string;
+  count?: number
 }
 
 export interface Rating {

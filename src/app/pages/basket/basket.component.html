@@ -1,1 +1,19 @@
-<p>basket works!</p>
+<div class="pt-4 h-screen">
+  <h3>Sepetim</h3>
+  <mat-card>
+    <mat-list>
+      <div *ngFor="let item of list">
+        <mat-list-item>
+          <img matListItemAvatar [src]="item.image" [alt]="item.title" />
+          <span matListItemTitle>{{ item.title }}<span class="text-red-600 ml-2">({{ item.count }} Adet)</span></span>
+          <span matListItemLine>{{ item.price }}  ₺</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="w-full flex justify-center my-8">
+        <button *ngIf="list.length" mat-flat-button color="accent" (click)="deleteAll()">Sepeti Boşalt</button>
+        <span *ngIf="list.length === 0">Sepetiniz Boş</span>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

@@ -17,7 +17,7 @@
     <mat-icon>list</mat-icon>
   </button>
   <button mat-button aria-label="Sepet" matTooltip="Sepet" routerLink="basket">
-    <mat-icon [matBadge]="count > 0 ? count : null" matBadgeSize="small" matBadgeColor="warn">shopping_cart</mat-icon>
+    <mat-icon [matBadge]="count > 0 ? count : null" matBadgeSize="small" matBadgeColor="warn" aria-hidden="false">shopping_cart</mat-icon>
   </button>
   <button mat-button aria-label="Çıkış" matTooltip="Çıkış" (click)="logout()">
     <mat-icon>logout</mat-icon>
