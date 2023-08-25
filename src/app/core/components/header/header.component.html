@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <!-- Title -->
-  HW
+  <span class="cursor-pointer" routerLink="/products">HW</span>
+
   <!-- Space -->
   <span class="flex-auto"></span>
   <span class="mr-8 text-sm font-light"
@@ -16,8 +17,19 @@
   >
     <mat-icon>list</mat-icon>
   </button>
-  <button mat-button aria-label="Sepet" matTooltip="Sepet" routerLink="basket">
-    <mat-icon [matBadge]="count > 0 ? count : null" matBadgeSize="small" matBadgeColor="warn" aria-hidden="false">shopping_cart</mat-icon>
+  <button
+    mat-button
+    aria-label="Sepet"
+    matTooltip="Sepetim"
+    routerLink="basket"
+  >
+    <mat-icon
+      [matBadge]="count > 0 ? count : null"
+      matBadgeSize="small"
+      matBadgeColor="warn"
+      aria-hidden="false"
+      >shopping_cart</mat-icon
+    >
   </button>
   <button mat-button aria-label="Çıkış" matTooltip="Çıkış" (click)="logout()">
     <mat-icon>logout</mat-icon>

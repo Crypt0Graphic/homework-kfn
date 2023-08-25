@@ -26,9 +26,9 @@ const routes: Routes = [
     component: PrivateComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'products', component: ProductsComponent, title: 'Ürünler' },
+      { path: 'products', component: ProductsComponent, title: 'Tüm Ürünler' },
       { path: 'product/:id', component: ProductComponent, title: 'Ürün Detay' },
-      { path: 'basket', component: BasketComponent, title: 'Sepet' },
+      { path: 'basket', component: BasketComponent, title: 'Sepetim' },
     ],
   },
 ];

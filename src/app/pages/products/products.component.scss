@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+.card-hover {
+    &:hover {
+      @include mat.elevation(4);
+    }
+  }

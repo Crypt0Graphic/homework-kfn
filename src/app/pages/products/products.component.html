@@ -3,7 +3,7 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pb-8">
-  <mat-card *ngFor="let item of list">
+  <mat-card *ngFor="let item of list" class="card-hover">
     <!-- Header -->
     <div class="h-16 p-4 font-bold cursor-pointer" [routerLink]="['/product', item.id]">{{ item.title }}</div>
     <!-- Image -->
